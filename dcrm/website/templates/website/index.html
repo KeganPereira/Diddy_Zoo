@@ -1,0 +1,14 @@
+{% extends 'website/base.html' %} 
+{% block content %} 
+  <br> 
+
+  <div class="text-center" > 
+    <h3>Django Demo App</h3> 
+    <br> 
+    <h5> The Diddla Zoo</h5> 
+    <hr> 
+    <br> 
+    <a href="{% url 'register'  %}" class=" btn btn-primary">Create your account</a>
+  </div>
+
+  {% endblock %}    
