@@ -1,14 +1,15 @@
-{ extends 'website/base.html'} 
+{% extends 'website/base.html' %}  
+{% load crispy_forms_tags %}
 {% block content %} 
   <body> 
     <br> 
-    <div class = "container bg-dark p-5" > 
+    <div class = "container bg-light p-5 form-layout" > 
         <h3>  Create your Account </h3> 
-        <h5> Start managing your clients today! </h5> 
+        <h5> DIDDY ZOO IS GOATED </h5> 
          <hr> 
          <br> 
          <form method="POST" autocomplete= "off"> 
-        {% csrf+_token %} 
+        {% csrf_token %} 
         {{form.as_p}} 
         <button type = "submit" class = "btn btn-primary w-100 btn-block p-2">Create Account</button> 
 
@@ -16,9 +17,10 @@
          </form> 
          <br> 
          <div class ="text-center"> 
-            <p>Already have an account?</p> <a href="{% url '' %}">Login</a> 
+            <p>Already have an account?</p> <a href="{% url 'my-login' %}">Login</a> 
 
-         </div>
+         </div> 
+         <br>
     </div> 
   </body> 
   {% endblock %}

@@ -1,4 +1,7 @@
-h1{ 
+.form-layout{ 
 
-    color:red
+
+   border-radius: 5px; 
+   width: 500px;
+
 }
