@@ -1,6 +1,9 @@
+ 
+{% block content %}
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary justify-content-center">
-    <a class="navbar-brand main-heading" href="{% url '' %}">  
-      &nbsp; Django demo App
+    <a class="navbar-brand main-heading" href="{% url '' %}">   
+      &nbsp; Diddling app
     </a>
     <button
       class="navbar-toggler"
@@ -14,7 +17,7 @@
       <span class="navbar-toggler-icon"></span>
      </button>
         <div class="collapse navbar-collapse text-center" id="navbarNavDropdown">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav me-auto">
            &nbsp;     &nbsp;     &nbsp;
            {% if user.is_authenticated %}
              <li class="nav-item">
@@ -32,8 +35,56 @@
           &nbsp;     &nbsp;     &nbsp;
           <li class="nav-item">
            <a class="nav-link" href="{% url 'my-login' %}">Login</a>
-         </li>
+         </li> 
+         &nbsp;
+         <li> 
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Bookings
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Booking Tickets</a>
+              <a class="dropdown-item" href="#">Hotel Bookings</a>
+            </div> 
+            &nbsp;
+         <li> 
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Educations and tours
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Educational Tours</a>
+              <a class="dropdown-item" href="#">Education courses</a> 
+              <a class="dropdown-item" href="#">Events and Arcade</a>
+            </div> 
+         &nbsp;
+         <li> 
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Educations and tours
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Educational Tours</a>
+              <a class="dropdown-item" href="#">Education courses</a> 
+              <a class="dropdown-item" href="#">Events and Arcade</a>
+            </div> 
+            &nbsp;
+            <li> 
+             <div class="dropdown">
+               <button class="btn btn-primary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 Educations and tours
+               </button>
+               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                 <a class="dropdown-item" href="#">Gift a Membership</a>
+                 <a class="dropdown-item" href="#">Life Time Membership</a> 
+                
+               </div>
+          </div>
+      </li>   
+
         {% endif %}
-       </ul>
+       </ul> 
+       <input type="text" placeholder="Search..">
       </div> 
-    </nav>
+    </nav> 
+    {% endblock %}
