@@ -1,7 +1,8 @@
 from django.shortcuts import render 
 from  .forms import CreateUserForm, LoginForm   
 from django.contrib.auth.models import auth 
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate 
+
 
 # Create your views here. 
 
@@ -34,7 +35,13 @@ def my_login(request):
                 auth.login(request, user) 
                 #return redirect ('') 
     context = {'login_form':form}  
-    return render(request, 'website/my-login.html', context=context)
+    return render(request, 'website/my-login.html', context=context)  
+
+def educational(request): 
+    return render(request, 'website/educational-tours.html') 
+
+
+
 
 
         
