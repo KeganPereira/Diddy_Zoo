@@ -41,7 +41,10 @@ def educational(request):
     return render(request, 'website/educational-tours.html')  
 
 def courses(request): 
-    return render(request, 'website/educational_courses.html')
+    return render(request, 'website/educational_courses.html') 
+
+def courses1(request): 
+    return render(request, 'website/courses1.html')
 
 
 
