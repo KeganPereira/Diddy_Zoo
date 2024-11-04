@@ -4,5 +4,11 @@
    border-radius: 5px; 
    width: 500px;
 
-}   
+}    
 
+
+.jumbotron-jumbtron-fluid{ 
+   background-color: rgb(120, 194, 173);
+   color: aliceblue; 
+   margin-top: 100px;
+} 

@@ -38,7 +38,10 @@ def my_login(request):
     return render(request, 'website/my-login.html', context=context)  
 
 def educational(request): 
-    return render(request, 'website/educational-tours.html') 
+    return render(request, 'website/educational-tours.html')  
+
+def courses(request): 
+    return render(request, 'website/educational_courses.html')
 
 
 
