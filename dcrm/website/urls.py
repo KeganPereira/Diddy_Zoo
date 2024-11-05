@@ -7,6 +7,7 @@ path('register', views.register, name = "register") ,
 path('my-login', views.my_login, name = "my-login"), 
 path('educational', views.educational, name= "educational"), 
 path('courses', views.courses, name= "courses"),
-path('courses1', views.courses1, name="courses1")
+path('courses1', views.courses1, name="courses1") ,
+# path('enrol1', views.enrol1, name = "enrol1")
 
 ]
