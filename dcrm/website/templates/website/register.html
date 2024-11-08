@@ -9,8 +9,9 @@
          <hr> 
          <br> 
          <form method="POST" autocomplete= "off"> 
-        {% csrf_token %} 
-        {{form.as_p}} 
+          {% csrf_token %} 
+          {{form|crispy}} 
+
         <button type = "submit" class = "btn btn-primary w-100 btn-block p-2">Create Account</button> 
 
 

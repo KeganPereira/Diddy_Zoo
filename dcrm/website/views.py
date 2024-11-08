@@ -1,4 +1,4 @@
-from django.shortcuts import render 
+from django.shortcuts import render , redirect
 from  .forms import CreateUserForm, LoginForm 
 from django.contrib.auth.models import auth 
 from django.contrib.auth import authenticate 
@@ -35,7 +35,12 @@ def my_login(request):
                 auth.login(request, user) 
                 #return redirect ('') 
     context = {'login_form':form}  
-    return render(request, 'website/my-login.html', context=context)  
+    return render(request, 'website/my-login.html', context=context)   
+
+def logout(request): 
+    auth.logout(request)  
+    return redirect('my-login')
+
 
 def educational(request): 
     return render(request, 'website/educational-tours.html')  
@@ -44,7 +49,8 @@ def courses(request):
     return render(request, 'website/educational_courses.html') 
 
 def courses1(request): 
-    return render(request, 'website/courses1.html') 
+    return render(request, 'website/courses1.html')  
+
 
 # @login_required(login_url="my-login")
 # def enrol1(request): 
