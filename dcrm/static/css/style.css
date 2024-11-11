@@ -1,3 +1,12 @@
+@font-face {
+   font-family: myFirstFont;
+   src: url(BebasNeue-Regular.ttf);
+ }
+
+
+
+
+
 .form-layout{ 
 
 
@@ -11,4 +20,15 @@
    background-color: rgb(120, 194, 173);
    color: aliceblue; 
    margin-top: 100px;
-} 
+}   
+.myfont{ 
+   font-family: myFirstFont;
+
+}
+
+
+
+
+
+
+

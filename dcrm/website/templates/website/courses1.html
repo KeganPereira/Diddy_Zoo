@@ -1,12 +1,14 @@
 {% extends 'website/base.html' %}  
 {% load static %} 
+
+<!-- <link rel=" stylesheet" href="{% static 'css/style.css' %}">  -->
 {% block content %}   
 
 <div class="jumbotron">
-    <h1 class="display-4">𝖾𝖽𝗎𝖼𝖺𝗍𝗂𝗈𝗇𝖺𝗅 𝖼𝗈𝗎𝗋𝗌𝖾𝗌 (4-12)</h1>
+    <h1 class="display-4 myfont"><strong>E𝖽𝗎𝖼𝖺𝗍𝗂𝗈𝗇𝖺𝗅 C𝗈𝗎𝗋𝗌𝖾𝗌 (4-12) </strong></h1>
     <p class="lead">"Unleash the wild within."</p>
     <hr class="my-4">
-    <p>Expand Your Zoological Knowledge
+    <p class = "myfont">Expand Your Zoological Knowledge
 
         Diddy Zoo offers a range of educational courses designed to deepen your understanding of the animal kingdom and conservation efforts. Whether you're a budding naturalist or a seasoned zoo enthusiast, our courses offer a unique learning experience.
         
@@ -54,7 +56,7 @@
         State-of-the-Art Facilities: Utilize our modern facilities and resources to enhance your learning experience.
         Enroll today and embark on a journey of discovery!</p>
     <p class="lead">
-      <a class="btn btn-primary btn-lg" href="{% url 'enrol1' %}" role="button">Enroll Now!</a>
+      <a class="btn btn-primary btn-lg" href="{% url 'courses1' %}" role="button">Enroll Now!</a>
     </p>
   </div>
 

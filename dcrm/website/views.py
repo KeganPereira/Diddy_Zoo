@@ -33,7 +33,7 @@ def my_login(request):
 
             if user is not None: 
                 auth.login(request, user) 
-                #return redirect ('') 
+                return redirect ('') 
     context = {'login_form':form}  
     return render(request, 'website/my-login.html', context=context)   
 

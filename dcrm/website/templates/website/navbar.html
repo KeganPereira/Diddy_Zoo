@@ -20,10 +20,7 @@
         <ul class="navbar-nav me-auto">
            &nbsp;     &nbsp;     &nbsp;
            {% if user.is_authenticated %}
-             <li class="nav-item">
-              <a class="nav-link" href="{% url '' %}">Dashboard &nbsp; <i class="fa fa-home" aria-hidden="true"></i> </a>
-            </li>
-            &nbsp;     &nbsp;     &nbsp;
+             
             <li class="nav-item">
               <a class="nav-link" href="{% url 'logout' %}">Sign out &nbsp; <i class="fa fa-sign-out" aria-hidden="true"></i> </a>
             </li>
@@ -37,7 +34,11 @@
            <a class="nav-link" href="{% url 'my-login' %}">Login</a>
          </li> 
          &nbsp;
-         <li> 
+        
+        
+
+        {% endif %}    
+        <li> 
           <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Bookings
@@ -46,8 +47,10 @@
               <a class="dropdown-item" href="{% url '' %}">Booking Tickets</a>
               <a class="dropdown-item" href="{% url '' %}">Hotel Bookings</a>
             </div> 
-            &nbsp;
-         <li> 
+            &nbsp; 
+            </div> 
+            </li>
+        <li> 
           <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Educations and tours
@@ -56,7 +59,10 @@
               <a class="dropdown-item" href="{% url 'educational' %}">Educational Tours</a>
               <a class="dropdown-item" href="{% url 'courses' %}">Education courses</a> 
               <a class="dropdown-item" href="#">Events and Arcade</a>
-            </div> 
+            </div>   
+            </div>
+            
+          </li>
          &nbsp;
          <li> 
           <div class="dropdown">
@@ -67,7 +73,9 @@
               <a class="dropdown-item" href="#">Zoo Map</a>
               <a class="dropdown-item" href="#">Zoo history</a> 
               <a class="dropdown-item" href="#">Zoo guidelines</a>
-            </div> 
+            </div>   
+          </div>
+          </li>
             &nbsp;
             <li> 
              <div class="dropdown">
@@ -81,8 +89,9 @@
                </div>
           </div>
       </li>   
+      
 
-        {% endif %}
+
        </ul> 
        <input type="text" placeholder="Search..">
       </div> 

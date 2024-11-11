@@ -9,7 +9,7 @@ from django.forms.widgets import PasswordInput, TextInput
 class CreateUserForm(UserCreationForm): 
     class Meta:  
         model = ZooUser
-        fields= ['username', 'password', 'password2', 'first_name', 'last_name','email','address','telephone']  
+        fields= ['username', 'password1', 'password2' ,'first_name', 'last_name','email','address','telephone']  
 
         #- Login User 
 
