@@ -1,4 +1,6 @@
 {% extends 'website/base.html' %}  
+{% load crispy_forms_tags %} 
+
 {% load static %} 
 {% block content %}    
 <body> 
@@ -10,7 +12,7 @@
     <br> 
     <form method="POST" autocomplete="off"> 
         {% csrf_token %} 
-        {{|crispy}} 
+        {{enroll_form|crispy}} 
         <br> 
         <button type ="submit"class ="btn btn-primary w-100 btn-block p-2" >Enroll</button> 
 

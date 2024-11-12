@@ -17,7 +17,7 @@ class LoginForm(AuthenticationForm):
     username =forms.CharField(widget= TextInput()) 
     password= forms.CharField(widget= PasswordInput())   
 
-class enroll1():
+class enroll1_form():
     class Meta: 
         model =  enroll1  
-        fields = ['courses', 'Zoo_ID']
+        fields = ['courses']
