@@ -9,6 +9,6 @@ path('educational', views.educational, name= "educational"),
 path('courses', views.courses, name= "courses"),
 path('courses1', views.courses1, name="courses1") , 
 path('logout', views.logout, name= "logout"),
-# path('enrol1', views.enrol1, name = "enrol1")
+path('enrolcourses1', views.enrolcourses1, name="enrolcourses1"),
 
 ]

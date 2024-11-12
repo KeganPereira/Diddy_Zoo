@@ -1,5 +1,5 @@
 from django.shortcuts import render , redirect
-from  .forms import CreateUserForm, LoginForm 
+from  .forms import CreateUserForm, LoginForm ,enroll1
 from django.contrib.auth.models import auth 
 from django.contrib.auth import authenticate 
 
@@ -52,20 +52,13 @@ def courses1(request):
     return render(request, 'website/courses1.html')  
 
 
-# @login_required(login_url="my-login")
-# def enrol1(request): 
-#     form = EnrolUserForm() 
-#     if request.method== "POST": 
-#         form =EnrolUserForm(request,data=request.POST) 
-#         if form.is_valid():   
-        
-          
-
-
-        #     if user is not None: 
-        #         auth.enrol(request,user) 
-        #         #return redirect()
-        # context
+def enrolcourses1(request) :
+     form = enroll1() 
+     if request.method == "POST": 
+         form= LoginForm(request, data=request.POST) 
+         if form.is_valid():  
+             cos=authenticate(request)
+            
 
 
 

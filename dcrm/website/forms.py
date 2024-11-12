@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm 
 from django.contrib.auth.models import User 
-from .models import ZooUser
+from .models import ZooUser, enroll1
 
 from django import forms 
 from django.forms.widgets import PasswordInput, TextInput 
@@ -15,4 +15,9 @@ class CreateUserForm(UserCreationForm):
 
 class LoginForm(AuthenticationForm): 
     username =forms.CharField(widget= TextInput()) 
-    password= forms.CharField(widget= PasswordInput())  
+    password= forms.CharField(widget= PasswordInput())   
+
+class enroll1():
+    class Meta: 
+        model =  enroll1  
+        fields = ['courses', 'Zoo_ID']
