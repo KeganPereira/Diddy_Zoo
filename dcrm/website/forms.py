@@ -17,7 +17,17 @@ class LoginForm(AuthenticationForm):
     username =forms.CharField(widget= TextInput()) 
     password= forms.CharField(widget= PasswordInput())   
 
-class enroll1_form():
+class enroll1_form(forms.ModelForm):
     class Meta: 
         model =  enroll1  
-        fields = ['courses']
+        fields = '__all__' 
+        widgets= { 
+            'courses': forms.Select(choices=enroll1.Choices)
+        }
+
+# class profile_form(forms.ModelForm): 
+#     class Meta:  
+#         model = ZooUser
+#         fields= ['username', 'password1', 'password2' ,'first_name', 'last_name','email','address','telephone', 'points']  
+
+ 
