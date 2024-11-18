@@ -53,16 +53,35 @@ def courses1(request):
     return render(request, 'website/courses1.html')   
 
 def courses2(request): 
-    return render (request,'website/courses2.html' )
+    return render (request,'website/courses2.html' )  
+def map (request): 
+    return render (request, 'website/map.html') 
+
+def Hotel_Booking(request): 
+    return render
+
+    #-------------------------------------------------------------------------------------------------------------------#
 
 @login_required(login_url='my-login')  
 def enrolcourses1(request) :
     form= enroll1_form() 
+
     if request.method == "POST":  
-        form=enroll1_form(data=request.POST) 
-        if form.is_valid(): 
-            form.save()
+       updated_request = request.POST.copy() 
+       updated_request.update({'Zoo_ID_id': request.user}) 
+
+       form = enroll1_form(updated_request) 
+
+       if form.is_valid(): 
+
+            obj = form.save(commit=False)
+            obj.Zoo_ID_id = request.user.id
+            obj.save()
+
             return redirect ('') 
+       else:
+            print("Form is not valid")
+
     context = {'enroll_form':form}  
     return render(request, 'website/courses1_enrolling.html', context=context)             
         
