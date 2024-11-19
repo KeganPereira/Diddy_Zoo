@@ -58,7 +58,7 @@ def map (request):
     return render (request, 'website/map.html') 
 
 def Hotel_Booking(request): 
-    return render
+    return render (request, 'website/hotel.html')
 
     #-------------------------------------------------------------------------------------------------------------------#
 

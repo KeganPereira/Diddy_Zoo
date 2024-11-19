@@ -30,7 +30,19 @@ if(String(days) == "NaN"){
 
     let price = document.getElementId('hotel_output') 
 
-    price.innerHTML= "Hotel cost: £"+ String(total)
+    price.innerHTML= "Hotel cost: £"+ String(total)  
+
+
+
+    let adults = document.getElementId("id_hotel_booking_adult"); 
+    adults.addEventListener("change", update_cost) 
+    let children= document.getElementById("id_hotel_booking_children"); 
+    children.addEventListener("change", update_cost) 
+    let oaps= document.getElementById("id_hotel_booking_oap"); 
+    oaps.addEventListener("change", update_cost)  
+
+    // TO OD: add the same update for the fields
+
 
 
 
