@@ -4,8 +4,23 @@
 {% block content %}  
 
 <p> this is the hotel page </p> 
-<div class ="container bg-primary"
+<div class ="container bg-primary text-white p-5 form-layout " > 
+    <h3>book your stay</h3> 
+    <hr> 
+    <br> 
 
+    <form action = "{% url 'Hotel_Booking'  %}" method= "POST" autocomplete= "off" > 
+     {% csrf_token %} 
+
+     {{form|crispy}} 
+     <br> 
+     <h2 id="hotel_output">Hotel cost: £0.00</h2> 
+     <br> 
+     <button type= "submit" class ="btn btn-primary w-100 btn-block p-2">book &nbsp; <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+    </from> 
+</div> 
+<br> 
+<script src ="{% static 'js/hotel.js' %}"></script>
 
 
 

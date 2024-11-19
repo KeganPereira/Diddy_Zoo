@@ -22,6 +22,7 @@ class enroll1(models.Model):
 class Hotel_Booking(models.Model): 
     booking_id =models.AutoField(primary_key= True, editable= False) 
     hotel_user_id= models.ForeignKey(ZooUser, on_delete= models.CASCADE) 
+    hotel_booking_date= models.DateField(auto_now_add=True)
     hotel_booking_date_arrive=models.DateField() 
     hotel_booking_date_leave= models.DateField() 
     hotel_booking_adults=models.IntegerField(default = 0)  
