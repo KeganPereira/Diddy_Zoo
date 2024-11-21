@@ -57,8 +57,7 @@ def courses2(request):
 def map (request): 
     return render (request, 'website/map.html') 
 
-def Hotel_Booking(request): 
-    return render (request, 'website/hotel.html')
+
 
     #-------------------------------------------------------------------------------------------------------------------#
 
@@ -83,7 +82,53 @@ def enrolcourses1(request) :
             print("Form is not valid")
 
     context = {'enroll_form':form}  
-    return render(request, 'website/courses1_enrolling.html', context=context)             
+    return render(request, 'website/courses1_enrolling.html', context=context)      
+
+def Hotel_Booking(request):  
+
+    form = Hotel_Booking() 
+    if request.method=="POST": 
+        updated_request=request.POST.copy() 
+        updated_request.update({'hotel_user_id_id': request.user}) 
+        form = Hotel_Booking(updated_request ) 
+
+    if form.is_valid(): 
+        obj1= form.save(commit=False) 
+
+
+        arrive= obj1.hotel_booking_date_arrive 
+        depart =obj1.hotel_booking_date_leave 
+        result = depart -arrive  
+        print("Number of days: ",  result.days) 
+
+        hotel_total_cost = int(obj1.hotel_booking_adults)*65 \
+                         + int(obj1.hotel_booking_children)* 35\
+                         +int(obj1.hotel_booking_oap)*40  
+        
+        hotel_total_cost*= int(result.days) 
+
+        hotel_points=int(hotel_total_cost/20) 
+        print("Hotel Points: ", hotel_points) 
+        print("Printing booking costs: " ,  hotel_total_cost)  
+
+        obj1.hotel_points = hotel_points
+        obj1.hotel_total_cost= hotel_total_cost 
+        obj1.hotel_user_id= request.user 
+
+
+        obj1.save() 
+
+        return redirect('') 
+    else: 
+        print('There was a problem with the form') 
+        return redirect ('hotel')
+context = {'form':form}   
+return render(request)
+
+         
+
+
+
         
 
    
