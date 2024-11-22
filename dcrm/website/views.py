@@ -1,8 +1,8 @@
 from django.shortcuts import render , redirect
-from  .forms import CreateUserForm, LoginForm ,enroll1_form
+from  .forms import CreateUserForm, LoginForm ,enroll1_form ,Hotel_Booking_Form
 from django.contrib.auth.models import auth 
 from django.contrib.auth import authenticate  
-from .models import enroll1
+from .models import enroll1, Hotel_Booking
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.  
@@ -84,46 +84,52 @@ def enrolcourses1(request) :
     context = {'enroll_form':form}  
     return render(request, 'website/courses1_enrolling.html', context=context)      
 
+@login_required(login_url='my-login') 
 def Hotel_Booking(request):  
 
-    form = Hotel_Booking() 
-    if request.method=="POST": 
+    form = Hotel_Booking_Form() 
+
+    if request.method == "POST":  
         updated_request=request.POST.copy() 
         updated_request.update({'hotel_user_id_id': request.user}) 
-        form = Hotel_Booking(updated_request ) 
 
-    if form.is_valid(): 
-        obj1= form.save(commit=False) 
+        form = Hotel_Booking_Form(updated_request) 
+
+        if form.is_valid(): 
+            obj1= form.save(commit=False) 
 
 
-        arrive= obj1.hotel_booking_date_arrive 
-        depart =obj1.hotel_booking_date_leave 
-        result = depart -arrive  
-        print("Number of days: ",  result.days) 
+            arrive= obj1.hotel_booking_date_arrive 
+            depart =obj1.hotel_booking_date_leave 
+            result = depart -arrive  
+            print("Number of days: ",  result.days) 
 
-        hotel_total_cost = int(obj1.hotel_booking_adults)*65 \
-                         + int(obj1.hotel_booking_children)* 35\
-                         +int(obj1.hotel_booking_oap)*40  
+            hotel_total_cost = int(obj1.hotel_booking_adults)*65 \
+                            + int(obj1.hotel_booking_children)* 35\
+                            +int(obj1.hotel_booking_old_oap)*40  
+            
+            hotel_total_cost*= int(result.days) 
+
+            hotel_points=int(hotel_total_cost/20) 
+            print("Hotel Points: ", hotel_points) 
+            print("Printing booking costs: " ,  hotel_total_cost)  
+
+            obj1.hotel_points = hotel_points
+            obj1.hotel_total_cost= hotel_total_cost 
+            obj1.hotel_user_id= request.user 
+
+
+            obj1.save() 
+
+            return redirect('') 
+        else: 
+            print('There was a problem with the form') 
+            return redirect ('')
         
-        hotel_total_cost*= int(result.days) 
-
-        hotel_points=int(hotel_total_cost/20) 
-        print("Hotel Points: ", hotel_points) 
-        print("Printing booking costs: " ,  hotel_total_cost)  
-
-        obj1.hotel_points = hotel_points
-        obj1.hotel_total_cost= hotel_total_cost 
-        obj1.hotel_user_id= request.user 
+    context = {'form':form}   
+    return render(request,'website/hotel.html', context=context) 
 
 
-        obj1.save() 
-
-        return redirect('') 
-    else: 
-        print('There was a problem with the form') 
-        return redirect ('hotel')
-context = {'form':form}   
-return render(request)
 
          
 

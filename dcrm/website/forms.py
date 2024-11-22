@@ -34,7 +34,7 @@ class Hotel_Booking_Form(forms.ModelForm):
              "hotel_booking_date_arrive": "day you wish to arrive", 
 
         }  
-        widget = { 
+        widgets = { 
               'hotel_booking_date_arrive': forms.DateInput(attrs={'type': 'date'}), 
               'hotel_booking_date_leave': forms.DateInput(attrs={'type': 'date'}),   
               'hotel_total_cost':forms.HiddenInput(), 
