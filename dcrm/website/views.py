@@ -53,7 +53,10 @@ def courses1(request):
     return render(request, 'website/courses1.html')   
 
 def courses2(request): 
-    return render (request,'website/courses2.html' )  
+    return render (request,'website/courses2.html' )   
+
+def courses3(request): 
+    return render (request, 'website/courses3.html')
 def map (request): 
     return render (request, 'website/map.html') 
 

@@ -12,8 +12,8 @@ class ZooUser(AbstractUser):
 class enroll1(models.Model):  
     Choices = [ 
         ('4-12','courses age 4-12'), 
-        ('4-12','courses age 4-12'), 
-        ('4-12','courses age 4-12'),
+        ('13-16','courses age 13-16'), 
+        ('17','courses age 17'),
        
     
         ]

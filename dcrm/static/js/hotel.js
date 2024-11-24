@@ -10,7 +10,7 @@ function update_cost(){
 
     if(String(days) == "NaN"){ 
         let price = document.getElementById('hotel_output') 
-        price.innerHTML= "Hotel cost: Date has been chosen" 
+        price.innerHTML= "Hotel cost: Date has not been chosen" 
 
 
 } else{ 
