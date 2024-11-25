@@ -35,7 +35,21 @@ class Hotel_Booking(models.Model):
 
 class Zoo_Booking(models.Model): 
     zoo_booking_id= models.AutoField(primary_key=True, editable=False) 
-    zoo_user_id= models.ForeignKey(ZooUser, on_delete= models.CASCADE) 
+    zoo_user_id= models.ForeignKey(ZooUser, on_delete= models.CASCADE)  
+    zoo_booking_date= models.DateTimeField(blank = True, default =datetime.now) 
+    zoo_booking_date_arrive=models.DateField() 
+    zoo_booking_date_leave=models.DateField() 
+    zoo_booking_adults= models.IntegerField(default = 0) 
+    zoo_booking_children= models.IntegerField(default = 0) 
+    zoo_booking_old_oap=models.IntegerField(default =0) 
+    zoo_total_cost= models.FloatField(default = 0 ) 
+    zoo_points= models.IntegerField(default = 0)   
+
+class Paymments(model.Model):  
+    name_of_card = models.CharField((max_length=200, blank=True))
+    card_number= models.CharField(default=0) 
+    cvv_number = models.CharField(default=0) 
+    expiry_date= models.CharField(default = 0 )
     
 
 

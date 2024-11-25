@@ -1,5 +1,5 @@
 from django.shortcuts import render , redirect
-from  .forms import CreateUserForm, LoginForm ,enroll1_form ,Hotel_Booking_Form
+from  .forms import CreateUserForm, LoginForm ,enroll1_form ,Hotel_Booking_Form,Zoo_Booking_Form
 from django.contrib.auth.models import auth 
 from django.contrib.auth import authenticate  
 from .models import enroll1, Hotel_Booking
@@ -130,7 +130,69 @@ def Hotel_Booking(request):
             return redirect ('')
         
     context = {'form':form}   
-    return render(request,'website/hotel.html', context=context) 
+    return render(request,'website/hotel.html', context=context)  
+
+@login_required(login_url='my-login') 
+def Ticket_Booking(request):   
+    form = Zoo_Booking_Form() 
+
+    if request.method== "POST": 
+        updated_request=request.POST.copy() 
+        updated_request.update = ({"zoo_user_id_id": request.user})  
+
+        form= Zoo_Booking_Form(updated_request) 
+        if form.is_valid(): 
+            obj1= form.save(commit=False)   
+
+
+            arrive= obj1.zoo_booking_date_arrive 
+            depart =obj1.zoo_booking_date_leave 
+            result = depart - arrive  
+            print("Number of days: ",  result.days)  
+
+            zoo_total_cost = int(obj1.zoo_booking_adults)*65 \
+                             +int(obj1.zoo_booking_children)* 35 \
+                             +int(obj1.zoo_booking_old_oap)*40  
+            zoo_total_cost*= int(result.days) 
+
+            zoo_points= int(zoo_total_cost/20)  
+            print("Zoo Points: ", zoo_points) 
+            print("Printing booking costs: " ,  zoo_total_cost)   
+            obj1.zoo_points = zoo_points
+            obj1.zoo_total_cost= zoo_total_cost 
+            obj1.zoo_user_id= request.user  
+            obj1.save() 
+
+            return redirect('') 
+        else: 
+            print('There was a problem with the form') 
+            return redirect ('')
+        
+    context = {'Ticket_Form':form}   
+    return render(request,'website/zoo_booking.html', context=context)    
+
+
+@login_required(login_url='my-login')  
+def Payments(request)   
+    one_record = ZooUser.objects.get(id=request.user.id) 
+    booking = ModelBooking.objects.latest("hotel_user_id")
+    form =  Payments_Form()  
+     if requests_method == "POST" 
+          
+        updated_request=request.POST.copy() 
+        updated_request.update = ({"Hotel_user_id_id": request.user})  
+
+        form= Payments_Form(updated_request,self) 
+        if form.is_valid(): 
+            obj1= form.save(commit=False)   
+
+
+
+
+
+
+
+
 
 
 

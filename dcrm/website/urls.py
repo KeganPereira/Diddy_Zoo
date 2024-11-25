@@ -13,6 +13,7 @@ path('enrolcourses1', views.enrolcourses1, name="enrolcourses1"),
 path('courses2', views.courses2, name="courses2"),  
 path('courses3', views.courses3, name= "courses3"),
 path('map', views.map, name = "map"), 
-path('Hotel_Booking', views.Hotel_Booking, name = "Hotel_Booking")
+path('Hotel_Booking', views.Hotel_Booking, name = "Hotel_Booking") ,
+path('Ticket_Booking', views.Ticket_Booking, name = "Ticket_Booking")
 
 ]

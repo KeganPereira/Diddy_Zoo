@@ -1,0 +1,27 @@
+{% extends 'website/base.html' %} 
+{% load static %}
+{% load crispy_forms_tags %}  
+{% block content %}   
+<p> this is the hotel page </p> 
+<div class ="container bg-primary text-white p-5 form-layout " > 
+    <h3 class="myfont">book your Visit</h3> 
+    <hr> 
+    <br> 
+
+    <form action = "{% url 'Ticket_Booking'  %}" method="POST" autocomplete= "off" > 
+     {% csrf_token %} 
+
+     {{Ticket_Form|crispy}} 
+     <br> 
+     <h2 id="zoo_output" class="myfont">Zoo cost: £0.00</h2> 
+     <br> 
+     <button type= "submit" class ="btn btn-secondary w-100 btn-block p-2 myfont">BOOK &nbsp; <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+    </from> 
+</div> 
+<br> 
+<script src ="{% static 'js/zoo.js' %}"></script>
+
+
+
+
+{% endblock %}
