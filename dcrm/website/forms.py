@@ -69,7 +69,7 @@ class Zoo_Booking_Form(forms.ModelForm):
 
 
 
- class Payments_Form(forms. ModelForm): 
+class Payments_Form(forms. ModelForm): 
        class Meta: 
         model= Paymments 
         fields = ['name_of_card', 'card_number', 'cvv_number', 'expiry_date' ] 
@@ -83,14 +83,20 @@ class Zoo_Booking_Form(forms.ModelForm):
 
         } 
 
-        widgets ={  
+        # # widgets ={   
+        # #     { 
+        # #         "name_of_card": forms.CharField(attrs={"placeholder": "Name of Card"}), 
+
+        # #     }
+
+
                
         
 
 
-        }
+        # }
 
-# class profile_form(forms.ModelForm): 
+# # class profile_form(forms.ModelForm): 
 #     class Meta:  
 #         model = ZooUser
 #         fields= ['username', 'password1', 'password2' ,'first_name', 'last_name','email','address','telephone', 'points']  

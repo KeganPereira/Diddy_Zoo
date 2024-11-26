@@ -45,11 +45,11 @@ class Zoo_Booking(models.Model):
     zoo_total_cost= models.FloatField(default = 0 ) 
     zoo_points= models.IntegerField(default = 0)   
 
-class Paymments(model.Model):  
-    name_of_card = models.CharField((max_length=200, blank=True))
-    card_number= models.CharField(default=0) 
-    cvv_number = models.CharField(default=0) 
-    expiry_date= models.CharField(default = 0 )
+class Paymments(models.Model):  
+    name_of_card = models.CharField(max_length=200, blank=True)
+    card_number= models.CharField(max_length=200) 
+    cvv_number = models.CharField(max_length=200) 
+    expiry_date= models.CharField(max_length=200)
     
 
 

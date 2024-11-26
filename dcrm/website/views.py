@@ -1,8 +1,8 @@
 from django.shortcuts import render , redirect
-from  .forms import CreateUserForm, LoginForm ,enroll1_form ,Hotel_Booking_Form,Zoo_Booking_Form
+from  .forms import CreateUserForm, LoginForm ,enroll1_form ,Hotel_Booking_Form,Zoo_Booking_Form,Payments_Form
 from django.contrib.auth.models import auth 
 from django.contrib.auth import authenticate  
-from .models import enroll1, Hotel_Booking
+from .models import enroll1, Hotel_Booking,ZooUser
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.  
@@ -88,7 +88,7 @@ def enrolcourses1(request) :
     return render(request, 'website/courses1_enrolling.html', context=context)      
 
 @login_required(login_url='my-login') 
-def Hotel_Booking(request):  
+def Hotel_Booking_page(request):  
 
     form = Hotel_Booking_Form() 
 
@@ -124,7 +124,7 @@ def Hotel_Booking(request):
 
             obj1.save() 
 
-            return redirect('') 
+            return redirect('website/payments.html') 
         else: 
             print('There was a problem with the form') 
             return redirect ('')
@@ -163,7 +163,7 @@ def Ticket_Booking(request):
             obj1.zoo_user_id= request.user  
             obj1.save() 
 
-            return redirect('') 
+            return redirect('payment') 
         else: 
             print('There was a problem with the form') 
             return redirect ('')
@@ -172,24 +172,23 @@ def Ticket_Booking(request):
     return render(request,'website/zoo_booking.html', context=context)    
 
 
-@login_required(login_url='my-login')  
-def Payments(request)   
-    one_record = ZooUser.objects.get(id=request.user.id) 
-    booking = ModelBooking.objects.latest("hotel_user_id")
-    form =  Payments_Form()  
-     if requests_method == "POST" 
-          
-        updated_request=request.POST.copy() 
-        updated_request.update = ({"Hotel_user_id_id": request.user})  
+def payments(request):  
+      one_record = ZooUser.objects.get(id=request.user.id) 
+      booking =Hotel_Booking.objects.last()
+      form =  Payments_Form()  
+      if request.method == "POST":  
+         updated_request=request.POST.copy() 
+         updated_request.update = ({"Hotel_user_id_id": request.user})   
+         form= Payments_Form(updated_request) 
+         if form.is_valid(): 
+             obj1= form.save(commit=False)  
+             name= name_of_card 
+                  
 
-        form= Payments_Form(updated_request,self) 
-        if form.is_valid(): 
-            obj1= form.save(commit=False)   
-
-
-
-
-
+      return render(request,'website/payments.html')    
+ 
+#Sk
+  
 
 
 
