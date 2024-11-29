@@ -50,7 +50,6 @@ class Paymments(models.Model):
     card_number= models.CharField(max_length=200) 
     cvv_number = models.CharField(max_length=200) 
     expiry_date= models.CharField(max_length=200)
-    
 
 
 # Create your models here.

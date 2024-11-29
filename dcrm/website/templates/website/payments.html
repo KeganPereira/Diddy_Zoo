@@ -4,16 +4,16 @@
 {% block content %}    
 <p> this is the hotel page </p> 
 <div class ="container bg-primary text-white p-5 form-layout " > 
-    <h3 class="myfont">book your stay</h3> 
+    <h3 class="myfont">Payments</h3> 
     <hr> 
     <br> 
 
-    <form action = "website/payments.html" method="POST" autocomplete= "off" > 
+    <form  method="POST" autocomplete= "off" > 
      {% csrf_token %} 
 
      {{form|crispy}} 
      <br> 
-     <h2 id="ticket_output" class="myfont">ticket cost: £0.00</h2> 
+     <h2 id="ticket_output" class="myfont">ticket cost: £{{booking.hotel_total_cost}}</h2> 
      <br> 
      <button type= "submit" class ="btn btn-secondary w-100 btn-block p-2 ","myfont">pay &nbsp; <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
     </from> 

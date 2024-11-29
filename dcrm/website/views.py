@@ -2,7 +2,7 @@ from django.shortcuts import render , redirect
 from  .forms import CreateUserForm, LoginForm ,enroll1_form ,Hotel_Booking_Form,Zoo_Booking_Form,Payments_Form
 from django.contrib.auth.models import auth 
 from django.contrib.auth import authenticate  
-from .models import enroll1, Hotel_Booking,ZooUser
+from .models import enroll1, Hotel_Booking,ZooUser,Paymments
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.  
@@ -111,7 +111,12 @@ def Hotel_Booking_page(request):
                             + int(obj1.hotel_booking_children)* 35\
                             +int(obj1.hotel_booking_old_oap)*40  
             
-            hotel_total_cost*= int(result.days) 
+            hotel_total_cost*= int(result.days)  
+            user_update=request.user 
+            user_update.points += hotel_total_cost//20 
+            user_update.save()
+
+
 
             hotel_points=int(hotel_total_cost/20) 
             print("Hotel Points: ", hotel_points) 
@@ -119,12 +124,12 @@ def Hotel_Booking_page(request):
 
             obj1.hotel_points = hotel_points
             obj1.hotel_total_cost= hotel_total_cost 
-            obj1.hotel_user_id= request.user 
-
+            obj1.hotel_user_id= request.user  
+          
 
             obj1.save() 
 
-            return redirect('website/payments.html') 
+            return redirect('payments') 
         else: 
             print('There was a problem with the form') 
             return redirect ('')
@@ -134,7 +139,8 @@ def Hotel_Booking_page(request):
 
 @login_required(login_url='my-login') 
 def Ticket_Booking(request):   
-    form = Zoo_Booking_Form() 
+    form = Zoo_Booking_Form()  
+
 
     if request.method== "POST": 
         updated_request=request.POST.copy() 
@@ -163,7 +169,7 @@ def Ticket_Booking(request):
             obj1.zoo_user_id= request.user  
             obj1.save() 
 
-            return redirect('payment') 
+            return redirect('payments') 
         else: 
             print('There was a problem with the form') 
             return redirect ('')
@@ -173,19 +179,24 @@ def Ticket_Booking(request):
 
 
 def payments(request):  
-      one_record = ZooUser.objects.get(id=request.user.id) 
-      booking =Hotel_Booking.objects.last()
-      form =  Payments_Form()  
-      if request.method == "POST":  
-         updated_request=request.POST.copy() 
-         updated_request.update = ({"Hotel_user_id_id": request.user})   
-         form= Payments_Form(updated_request) 
-         if form.is_valid(): 
-             obj1= form.save(commit=False)  
-             name= name_of_card 
-                  
 
-      return render(request,'website/payments.html')    
+    one_record = ZooUser.objects.get(id=request.user.id) 
+    booking =Hotel_Booking.objects.last()
+    form =  Payments_Form()  
+    print("payments")
+    #if the user filled in the form and posted it
+    if request.method == "POST":  
+        print("Posted")
+        form= Payments_Form(request.POST) 
+        if form.is_valid(): 
+            form.save()    
+            return redirect('')
+        
+                
+    context = {'form':form,
+               'booking':booking} 
+    return render(request,'website/payments.html', context=context)
+    
  
 #Sk
   
